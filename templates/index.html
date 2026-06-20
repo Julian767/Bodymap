@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script>
+    function toggleDarkMode() {
+        document.body.classList.toggle("dark-mode");
+    }
+</script>
+
+    <meta charset="UTF-8">
+    <title>Inicio - BodyMap</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+
+        <h1>BodyMap – Sistema Interactivo Corporal</h1>
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/mapa">Mapa Corporal</a>
+            <a href="/recomendaciones">Recomendaciones</a>
+            <a href="/asistente">Asistente Inteligente</a>
+            <a href="/informacion">Información Anatómica</a>
+<button onclick="toggleDarkMode()">Modo Oscuro</button>
+
+
+        </nav>
+    </header>
+
+    <section class="intro">
+        <h2>Bienvenido a BodyMap</h2>
+        <p>
+            Explora el cuerpo humano de manera interactiva. Haz clic en las zonas del mapa corporal para conocer sus funciones,
+            dolores frecuentes y causas comunes. Además, recibe recomendaciones de cuidado y orientación básica con nuestro asistente inteligente.
+        </p>
+        <div class="botones">
+            <button onclick="location.href='/mapa'">Mapa Corporal</button>
+            <button onclick="location.href='/informacion'">Información Anatómica</button>
+            <button onclick="location.href='/asistente'">Asistente Inteligente</button>
+            <button onclick="location.href='/recomendaciones'">Recomendaciones</button>
+        </div>
+    </section>
+</body>
+</html>
+

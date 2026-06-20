@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<script>
+    function toggleDarkMode() {
+        document.body.classList.toggle("dark-mode");
+        if (document.body.classList.contains("dark-mode")) {
+            localStorage.setItem("modoOscuro", "activado");
+        } else {
+            localStorage.setItem("modoOscuro", "desactivado");
+        }
+    }
+    window.onload = function() {
+        if (localStorage.getItem("modoOscuro") === "activado") {
+            document.body.classList.add("dark-mode");
+        }
+    };
+</script>
+
+
+    <meta charset="UTF-8">
+    <title>Asistente Inteligente - BodyMap</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>BodyMap – Sistema Interactivo Corporal</h1>
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/mapa">Mapa Corporal</a>
+            <a href="/recomendaciones">Recomendaciones</a>
+            <a href="/asistente">Asistente Inteligente</a>
+            <a href="/informacion">Información Anatómica</a>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Asistente Inteligente</h2>
+        <p>Ingresa tu síntoma y recibe orientación informativa automática.</p>
+        <form method="POST">
+            <label for="sintoma">Síntoma:</label>
+            <input type="text" id="sintoma" name="sintoma" placeholder="Ejemplo: dolor de cabeza" required>
+            <button type="submit">Consultar</button>
+        </form>
+
+        {% if respuesta %}
+        <div class="info-zona">
+            <h3>Posible orientación</h3>
+            <p>{{ respuesta }}</p>
+            <p><em>Nota: Esta información es orientativa. Consulta a un profesional de la salud si los síntomas persisten.</em></p>
+        </div>
+        {% endif %}
+    </section>
+</body>
+</html>

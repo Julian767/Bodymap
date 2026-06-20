@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script>
+    function toggleDarkMode() {
+        document.body.classList.toggle("dark-mode");
+        if (document.body.classList.contains("dark-mode")) {
+            localStorage.setItem("modoOscuro", "activado");
+        } else {
+            localStorage.setItem("modoOscuro", "desactivado");
+        }
+    }
+    window.onload = function() {
+        if (localStorage.getItem("modoOscuro") === "activado") {
+            document.body.classList.add("dark-mode");
+        }
+    };
+</script>
+
+    <meta charset="UTF-8">
+    <title>Información Anatómica - BodyMap</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>BodyMap – Sistema Interactivo Corporal</h1>
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/mapa">Mapa Corporal</a>
+            <a href="/recomendaciones">Recomendaciones</a>
+            <a href="/asistente">Asistente Inteligente</a>
+            <a href="/informacion">Información Anatómica</a>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Información Anatómica</h2>
+        <p>Explora las principales zonas del cuerpo humano y conoce sus funciones y dolores frecuentes.</p>
+
+        <div class="info-zona">
+            <h3>Cabeza</h3>
+            <p>Funciones: protege el cerebro y alberga órganos sensoriales.</p>
+            <p>Dolores frecuentes: cefaleas, migrañas.</p>
+            <p>Causas comunes: tensión, estrés, problemas de visión.</p>
+        </div>
+
+        <div class="info-zona">
+            <h3>Espalda</h3>
+            <p>Funciones: soporte y movilidad del cuerpo.</p>
+            <p>Dolores frecuentes: contracturas, lumbalgia.</p>
+            <p>Causas comunes: mala postura, esfuerzo físico.</p>
+        </div>
+
+        <div class="info-zona">
+            <h3>Piernas</h3>
+            <p>Funciones: soporte y desplazamiento.</p>
+            <p>Dolores frecuentes: calambres, dolor muscular.</p>
+            <p>Causas comunes: fatiga, falta de hidratación.</p>
+        </div>
+    </section>
+</body>
+</html>
+

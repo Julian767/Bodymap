@@ -1,0 +1,146 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background: linear-gradient(to right, #f0f8ff, #e6f2ff);
+    color: #333;
+}
+
+header {
+    background: #003366;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #ffcc00;
+}
+
+/* Secciones */
+h2 {
+    text-align: center;
+    margin-top: 20px;
+    color: #003366;
+}
+
+section {
+    padding: 20px;
+    text-align: center;
+}
+
+button {
+    background: #0078d7;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    margin: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #005fa3;
+}
+
+.mapa-container {
+    position: relative;
+    width: 300px;
+    margin: 20px auto;
+    border: 2px solid #003366;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.zona {
+    position: absolute;
+    cursor: pointer;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+    opacity: 0.2;
+}
+
+.zona:hover {
+    background-color: rgba(0, 123, 255, 0.5);
+    opacity: 0.6;
+}
+
+/* Bloque de información */
+.info-zona {
+    background-color: #ffffff;
+    border-left: 5px solid #003366;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 20px auto;
+    width: 80%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: left;
+}
+
+.info-zona h3 {
+    color: #003366;
+    margin-top: 0;
+}
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background: linear-gradient(to right, #f0f8ff, #e6f2ff);
+    color: #333;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Modo oscuro */
+body.dark-mode {
+    background: #121212;
+    color: #e0e0e0;
+}
+
+header {
+    background: #003366;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    transition: background 0.3s ease;
+}
+
+body.dark-mode header {
+    background: #1f1f1f;
+}
+
+.info-zona {
+    background-color: #ffffff;
+    border-left: 5px solid #003366;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 20px auto;
+    width: 80%;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode .info-zona {
+    background-color: #1e1e1e;
+    border-left: 5px solid #888;
+}

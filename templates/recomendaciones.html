@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Recomendaciones - BodyMap</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+    function toggleDarkMode() {
+        document.body.classList.toggle("dark-mode");
+        if (document.body.classList.contains("dark-mode")) {
+            localStorage.setItem("modoOscuro", "activado");
+        } else {
+            localStorage.setItem("modoOscuro", "desactivado");
+        }
+    }
+    window.onload = function() {
+        if (localStorage.getItem("modoOscuro") === "activado") {
+            document.body.classList.add("dark-mode");
+        }
+    };
+</script>
+
+</head>
+<body>
+    <header>
+
+        <h1>BodyMap – Sistema Interactivo Corporal</h1>
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/mapa">Mapa Corporal</a>
+            <a href="/recomendaciones">Recomendaciones</a>
+            <a href="/asistente">Asistente Inteligente</a>
+            <a href="/informacion">Información Anatómica</a>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Recomendaciones para tu bienestar</h2>
+        <div class="info-zona">
+            <h3>Descanso</h3>
+            <p>Duerme entre 7 y 8 horas diarias para recuperar energía.</p>
+        </div>
+        <div class="info-zona">
+            <h3>Postura</h3>
+            <p>Mantén la espalda recta al trabajar o estudiar.</p>
+        </div>
+        <div class="info-zona">
+            <h3>Actividad física</h3>
+            <p>Haz ejercicio moderado al menos 3 veces por semana.</p>
+        </div>
+        <div class="info-zona">
+            <h3>Hidratación</h3>
+            <p>Bebe suficiente agua durante el día.</p>
+        </div>
+        <div class="info-zona">
+            <h3>Alimentación</h3>
+            <p>Consume frutas y verduras, evita exceso de azúcares.</p>
+        </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script>
+    function toggleDarkMode() {
+        document.body.classList.toggle("dark-mode");
+        if (document.body.classList.contains("dark-mode")) {
+            localStorage.setItem("modoOscuro", "activado");
+        } else {
+            localStorage.setItem("modoOscuro", "desactivado");
+        }
+    }
+    window.onload = function() {
+        if (localStorage.getItem("modoOscuro") === "activado") {
+            document.body.classList.add("dark-mode");
+        }
+    };
+</script>
+
+    <meta charset="UTF-8">
+    <title>Mapa Corporal Interactivo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .mapa-container {
+            position: relative;
+            width: 300px;
+            margin: 20px auto;
+        }
+
+        .zona {
+            position: absolute;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            opacity: 0.3;
+        }
+
+        .zona:hover {
+            background-color: rgba(0, 123, 255, 0.5);
+            opacity: 0.6;
+        }
+
+        .info-zona {
+            background-color: #e6f2ff;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px auto;
+            width: 80%;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .info-zona h3 {
+            color: #003366;
+        }
+    </style>
+    <script>
+        function mostrarInfo(zona) {
+            let info = "";
+            switch (zona) {
+                case "cabeza":
+                    info = "Funciones: alberga el cerebro y órganos sensoriales.\nDolores frecuentes: cefaleas, migrañas.\nCausas comunes: estrés, tensión ocular, deshidratación.";
+                    break;
+                case "cuello":
+                    info = "Funciones: conecta cabeza y tronco, permite movilidad.\nDolores frecuentes: rigidez cervical, tortícolis.\nCausas comunes: mala postura, uso prolongado de pantallas.";
+                    break;
+                case "pecho":
+                    info = "Funciones: protege corazón y pulmones.\nDolores frecuentes: tensión muscular, molestias respiratorias.\nCausas comunes: ansiedad, esfuerzo físico.";
+                    break;
+                case "abdomen":
+                    info = "Funciones: contiene órganos digestivos.\nDolores frecuentes: cólicos, gastritis.\nCausas comunes: mala alimentación, estrés.";
+                    break;
+                case "brazo":
+                    info = "Funciones: movilidad y fuerza.\nDolores frecuentes: tendinitis, dolor muscular.\nCausas comunes: sobreuso, esfuerzo repetitivo.";
+                    break;
+                case "pierna":
+                    info = "Funciones: soporte y desplazamiento.\nDolores frecuentes: calambres, dolor muscular.\nCausas comunes: fatiga, falta de hidratación.";
+                    break;
+                default:
+                    info = "Haz clic en una parte del cuerpo para ver información detallada.";
+            }
+            document.getElementById("infoZona").innerText = info;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>BodyMap – Sistema Interactivo Corporal</h1>
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/mapa">Mapa Corporal</a>
+            <a href="/recomendaciones">Recomendaciones</a>
+            <a href="/asistente">Asistente Inteligente</a>
+            <a href="/informacion">Información Anatómica</a>
+        </nav>
+    </header>
+
+    <h2>Mapa Corporal</h2>
+
+    <div class="mapa-container">
+        <img src="{{ url_for('static', filename='cuerpo.png') }}" alt="Cuerpo humano" style="width:100%;">
+
+        <!-- Zonas interactivas -->
+        <div class="zona" style="top: 10%; left: 35%; width: 30%; height: 10%;" onclick="mostrarInfo('cabeza')"></div>
+        <div class="zona" style="top: 20%; left: 38%; width: 24%; height: 8%;" onclick="mostrarInfo('cuello')"></div>
+        <div class="zona" style="top: 28%; left: 30%; width: 40%; height: 15%;" onclick="mostrarInfo('pecho')"></div>
+        <div class="zona" style="top: 43%; left: 30%; width: 40%; height: 15%;" onclick="mostrarInfo('abdomen')"></div>
+        <div class="zona" style="top: 28%; left: 15%; width: 15%; height: 30%;" onclick="mostrarInfo('brazo')"></div>
+        <div class="zona" style="top: 28%; left: 70%; width: 15%; height: 30%;" onclick="mostrarInfo('brazo')"></div>
+        <div class="zona" style="top: 58%; left: 35%; width: 30%; height: 25%;" onclick="mostrarInfo('pierna')"></div>
+    </div>
+
+    <section class="info-zona">
+        <h3>Información de la zona seleccionada</h3>
+        <p id="infoZona">Haz clic o pasa el ratón sobre una parte del cuerpo para ver información.</p>
+    </section>
+</body>
+</html>
