@@ -2,7 +2,7 @@
 import os
 from pathlib import Path
 
-# Usuario creado en @BotFather (sin el @). Se usa en los enlaces de la web.
+
 BOT_USERNAME = "Bodymap_julian_bot"
 
 _ENV_PATH = Path(__file__).resolve().parent.parent / ".env"
