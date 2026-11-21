@@ -1,35 +1,55 @@
+"""Aplicación web Flask del proyecto BodyMap."""
+import os
+
 from flask import Flask, render_template, request
+
+from bot_telegram.config import BOT_USERNAME
+from bot_telegram.responses import get_response
 
 app = Flask(__name__)
 
-@app.route('/')
+
+@app.context_processor
+def inject_bot_data():
+    """Expone el usuario del bot a todas las plantillas."""
+    return {
+        "bot_username": BOT_USERNAME,
+        "bot_url": f"https://t.me/{BOT_USERNAME}",
+    }
+
+
+@app.route("/")
 def inicio():
-    return render_template('index.html')
+    return render_template("index.html")
 
-@app.route('/mapa')
+
+@app.route("/mapa")
 def mapa():
-    return render_template('mapa.html')
+    return render_template("mapa.html")
 
-@app.route('/recomendaciones')
+
+@app.route("/recomendaciones")
 def recomendaciones():
-    return render_template('recomendaciones.html')
+    return render_template("recomendaciones.html")
 
-@app.route('/asistente', methods=['GET', 'POST'])
+
+@app.route("/informacion")
+def informacion():
+    return render_template("informacion.html")
+
+
+@app.route("/asistente", methods=["GET", "POST"])
 def asistente():
     respuesta = ""
-    if request.method == 'POST':
-        sintoma = request.form['sintoma'].lower()
-        if "cabeza" in sintoma:
-            respuesta = "Podría ser tensión o estrés. Se recomienda descanso y buena hidratación."
-        elif "espalda" in sintoma:
-            respuesta = "Puede deberse a mala postura. Realice estiramientos suaves."
-        else:
-            respuesta = "Sintoma no reconocido. Consulte un profesional si persiste."
-    return render_template('asistente.html', respuesta=respuesta)
+    sintoma = ""
 
-@app.route('/informacion')
-def informacion():
-    return render_template('informacion.html')
+    if request.method == "POST":
+        sintoma = request.form.get("sintoma", "").strip()
+        if sintoma:
+            respuesta = get_response(sintoma)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+    return render_template("asistente.html", respuesta=respuesta, sintoma=sintoma)
+
+
+if __name__ == "__main__":
+    app.run(debug=os.getenv("FLASK_DEBUG") == "1")

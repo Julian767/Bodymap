@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}BodyMap{% endblock %}</title>
+    <script>
+        // Se aplica antes de cargar el CSS para evitar el parpadeo de tema.
+        if (localStorage.getItem("modoOscuro") === "activado") {
+            document.documentElement.classList.add("dark-mode");
+        }
+    </script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>BodyMap – Sistema Interactivo Corporal</h1>
+        <nav aria-label="Navegación principal">
+            <a href="{{ url_for('inicio') }}">Inicio</a>
+            <a href="{{ url_for('mapa') }}">Mapa Corporal</a>
+            <a href="{{ url_for('recomendaciones') }}">Recomendaciones</a>
+            <a href="{{ url_for('asistente') }}">Asistente Inteligente</a>
+            <a href="{{ url_for('informacion') }}">Información Anatómica</a>
+            <button type="button" id="boton-tema" class="mode-toggle"
+                    onclick="toggleDarkMode()" aria-pressed="false">Modo Oscuro</button>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>BodyMap – Práctica Profesionalizante II | Contacto y Soporte:
+            <a href="{{ bot_url }}" target="_blank" rel="noopener noreferrer">Bot de Telegram BodyMap (@{{ bot_username }})</a>
+        </p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
